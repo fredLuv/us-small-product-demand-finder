@@ -2,7 +2,11 @@
 
 美国小件商品需求验证器。名字故意直白：先找美国消费者已经愿意买的小件商品，再判断中国供应链能不能做得更好、更便宜、更适合投广告。
 
-本目录把「开放选品 + 美国市场 + 广告点击/加购验证」计划落成可执行资产，已按你的补充标准偏向低合规风险、小轻件、可短视频演示的实物产品。
+Live tool: [US Small Product Demand Finder](https://fredluv.github.io/us-small-product-demand-finder/)
+
+Portfolio backlink: [Ethan Lu | Global Builder Portfolio](https://fredluv.github.io/) ([source repo](https://github.com/fredLuv/fredLuv.github.io))
+
+This repo turns an overseas product validation plan into a usable research kit: open product discovery, US market evidence, and small-budget ad or landing-page validation before buying inventory.
 
 ## 交付物
 
@@ -10,6 +14,13 @@
 - `us_small_product_demand_finder.xlsx`：核心“美国小件商品需求”验证工作簿
 - `validation_sop.md`：7-10 天执行 SOP
 - `landing_page_and_ads_brief.md`：落地页与广告素材模板
+
+## What It Helps You Do
+
+- Find small, lightweight products with US demand signals.
+- Avoid high-risk categories like supplements, medical devices, baby products, high-power electronics, and infringing IP.
+- Compare supply clues from AliExpress/1688 against demand clues from Amazon, TikTok, and Google Trends.
+- Turn a hot SKU into a better localized variant instead of copying it directly.
 
 ## 使用方式
 
@@ -32,3 +43,8 @@
 ## Necklaces / female decoration
 
 可以作为样品阶段候选，但不是“零风险”。优先测 stainless/titanium steel 风格、简洁吊坠、layering necklace set、gift-ready packaging、无 IP 设计。不要卖儿童首饰；不要写 `925 silver`、`gold filled`、`hypoallergenic`、`nickel free` 等声明，除非供应商能提供证明。
+
+## Related
+
+- Personal site: [fredluv.github.io](https://fredluv.github.io/)
+- Portfolio repo: [fredLuv/fredLuv.github.io](https://github.com/fredLuv/fredLuv.github.io)
