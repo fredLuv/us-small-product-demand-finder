@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>US Demand Pattern Finder</title>
+    <link rel="icon" href="./favicon.svg" />
+    <link rel="stylesheet" href="./visual_index.css" />
+  </head>
+  <body>
+    <header class="topbar">
+      <a class="brand" href="#top" aria-label="US Demand Pattern Finder">
+        <span class="brand-mark">DP</span>
+        <span>
+          <strong>Demand Pattern Finder</strong>
+          <small>US validation, not SKU copying</small>
+        </span>
+      </a>
+      <nav class="nav">
+        <a href="./us_demand_pattern_validation.xlsx">Workbook</a>
+        <a href="./validation_sop.md">7-day SOP</a>
+        <a href="./landing_page_and_ads_brief.md">Landing brief</a>
+      </nav>
+    </header>
+
+    <main id="top">
+      <section class="hero">
+        <div class="hero-copy">
+          <h1>Find what Americans already pay for.</h1>
+          <p>Click a category, open the source links, capture the signal, then decide if it deserves supplier outreach.</p>
+        </div>
+        <div class="hero-panel" aria-label="Three-step workflow">
+          <div>
+            <span>1</span>
+            <strong>Spot demand</strong>
+            <small>Amazon + TikTok + Google</small>
+          </div>
+          <div>
+            <span>2</span>
+            <strong>Find cost edge</strong>
+            <small>AliExpress + 1688</small>
+          </div>
+          <div>
+            <span>3</span>
+            <strong>Upgrade variant</strong>
+            <small>Packaging, bundle, material</small>
+          </div>
+        </div>
+      </section>
+
+      <section class="controls" aria-label="Category controls">
+        <div class="filter-row" id="filters"></div>
+        <label class="search-box">
+          <span>Search</span>
+          <input id="searchInput" type="search" placeholder="desk, pet, travel, car..." />
+        </label>
+      </section>
+
+      <section class="category-grid" id="categoryGrid" aria-live="polite"></section>
+
+      <section class="split">
+        <article class="decision-card">
+          <h2>Sample gate</h2>
+          <div class="gate-grid">
+            <span>32+/40 score</span>
+            <span>40%+ margin</span>
+            <span>$20-100 AOV</span>
+            <span>2+ demand sources</span>
+            <span>Supplier replies in 24h</span>
+            <span>Low compliance risk</span>
+          </div>
+        </article>
+        <article class="decision-card avoid">
+          <h2>Skip first</h2>
+          <div class="avoid-list">
+            <span>supplements</span>
+            <span>food</span>
+            <span>baby products</span>
+            <span>medical devices</span>
+            <span>high-power electronics</span>
+            <span>cosmetics</span>
+            <span>children's jewelry</span>
+            <span>adult products</span>
+            <span>IP knockoffs</span>
+          </div>
+        </article>
+      </section>
+
+      <section class="credits">
+        <h2>Image and source credits</h2>
+        <p>Images are local copies from Wikimedia Commons public-license files. Research links point to platform search pages so the live signal can be checked manually.</p>
+        <div id="creditList"></div>
+      </section>
+    </main>
+
+    <script src="./visual_index.js"></script>
+  </body>
+</html>
