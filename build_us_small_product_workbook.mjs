@@ -51,7 +51,7 @@ const avoidRows = [
 const sources = [
   ["AliExpress", "High sales, high review count, price gaps", "Find what China supply can provide.", "https://findniche.com/aliexpress/aliexpress-trending-products"],
   ["1688", "Factory/source price, MOQ, variants", "Validate cost advantage and supply depth.", "https://www.1688.com/"],
-  ["Amazon Movers & Shakers", "Fastest sales-rank gainers", "See short-term US demand changes.", "https://www.amazon.com/gp/movers-and-shakers"],
+  ["Amazon category-specific Movers & Shakers", "Fastest sales-rank gainers inside the matching category", "See short-term US demand changes without landing on personalized Books/series pages.", "https://www.amazon.com/gp/movers-and-shakers/home-garden/"],
   ["TikTok Creative Center Top Products", "Viral products, ad creatives, audience insights", "See content-driven demand.", "https://ads.tiktok.com/business/creativecenter/top-products/pc/en"],
   ["Google Trends", "US region/time/category search interest", "Check whether demand is rising or stable.", "https://trends.google.com/trends/"],
   ["TikTok Shop", "Live, shoppable video, Shop tab", "Observe discovery-commerce sales scenes.", "https://newsroom.tiktok.com/tiktok-shop-is-where-shoppers-come-to-discover"],
@@ -155,7 +155,7 @@ workflow.getRange("A1:D1").merge();
 title(workflow, "A1:D1");
 write(workflow, "A3:D3", [["Day", "Goal", "Actions", "Output"]]);
 write(workflow, "A4:D10", [
-  ["Day 1-2", "Capture 50 small product ideas", "AliExpress top selling/Choice, 1688 source, Amazon Movers & Shakers, TikTok Creative Center, Google Trends US.", "50 candidate rows with price, signals, complaint and upgrade angle."],
+  ["Day 1-2", "Capture 50 small product ideas", "AliExpress top selling/Choice, 1688 source, Amazon Search plus category-specific Amazon Rising lists, TikTok Creative Center, Google Trends US.", "50 candidate rows with price, signals, complaint and upgrade angle."],
   ["Day 3", "Screen to 10", "Remove complex compliance, heavy/fragile, low margin, saturated, low demo value products.", "10 high-score product ideas."],
   ["Day 4-5", "Contact suppliers", "Ask MOQ, sample price, custom packaging, US/EU customers, certificates, lead time, 30-100 unit test, no-logo, color/material/bundle changes.", "Supplier responses and sample feasibility."],
   ["Day 6", "Landing/content test", "Create one Shopify/Notion landing page, 3 TikTok/Reels demo scripts, 3 scene images, English value prop, waitlist/preorder form.", "Test-ready page and content packet."],

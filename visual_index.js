@@ -6,6 +6,7 @@ const categories = [
     image: "./assets/desk-organizer.jpg",
     score: 40,
     query: "modular desk organizer home office",
+    amazonRising: "https://www.amazon.com/gp/movers-and-shakers/home-garden/",
     oneLiner: "Messy desk to premium productivity setup. Best angle: minimalist WFH upgrade.",
     demand: "desk setup videos",
     upgrade: "matte finish + modular tray",
@@ -20,6 +21,7 @@ const categories = [
     image: "./assets/pet-hair.jpg",
     score: 38,
     query: "pet hair remover roller couch car",
+    amazonRising: "https://www.amazon.com/gp/movers-and-shakers/pet-supplies/",
     oneLiner: "Obvious pain, obvious demo. Best angle: one-swipe couch and car-seat cleanup.",
     demand: "pet owner pain",
     upgrade: "stronger handle + travel mini",
@@ -34,6 +36,7 @@ const categories = [
     image: "./assets/necklace.jpg",
     score: 36,
     query: "stainless steel pendant necklace women fashion accessories",
+    amazonRising: "https://www.amazon.com/gp/movers-and-shakers/fashion/",
     oneLiner: "Necklaces and small adornments can be high-margin, giftable and very light. Win through taste, materials and packaging.",
     demand: "Necklaces high in your TikTok screenshot",
     upgrade: "steel + gift box + no-IP design",
@@ -48,6 +51,7 @@ const categories = [
     image: "./assets/travel-packing.jpg",
     score: 37,
     query: "compression packing cubes travel organizer",
+    amazonRising: "https://www.amazon.com/gp/movers-and-shakers/fashion/",
     oneLiner: "Carry-on chaos is easy to show. Best angle: business-trip packing system.",
     demand: "packing / onebag content",
     upgrade: "premium zipper + size system",
@@ -62,6 +66,7 @@ const categories = [
     image: "./assets/car-detailing.jpg",
     score: 39,
     query: "car interior detailing brush microfiber kit",
+    amazonRising: "https://www.amazon.com/gp/movers-and-shakers/automotive/",
     oneLiner: "Dusty vents, screens and seat gaps make clean before/after content.",
     demand: "commuter + car care",
     upgrade: "no-chemical premium kit",
@@ -76,6 +81,7 @@ const categories = [
     image: "./assets/home-storage.jpg",
     score: 38,
     query: "drawer divider closet organizer kit",
+    amazonRising: "https://www.amazon.com/gp/movers-and-shakers/home-garden/",
     oneLiner: "Small home mess sells when the reset is satisfying and the colors look premium.",
     demand: "home reset content",
     upgrade: "neutral colors + stronger material",
@@ -90,6 +96,7 @@ const categories = [
     image: "./assets/fitness-recovery.jpg",
     score: 37,
     query: "massage ball stretching strap resistance band set",
+    amazonRising: "https://www.amazon.com/gp/movers-and-shakers/sporting-goods/",
     oneLiner: "Compact recovery tools work if framed as comfort/routine, not medical treatment.",
     demand: "desk-break routines",
     upgrade: "routine cards + travel pouch",
@@ -104,6 +111,7 @@ const categories = [
     image: "./assets/desk-setup.jpg",
     score: 38,
     query: "under desk cable management kit cable clips",
+    amazonRising: "https://www.amazon.com/gp/movers-and-shakers/office-products/",
     oneLiner: "Cable mess has instant before/after value and pairs well with creator desks.",
     demand: "desk cleanup content",
     upgrade: "tray + clips + labels kit",
@@ -118,6 +126,7 @@ const categories = [
     image: "./assets/desk-setup.jpg",
     score: 35,
     query: "left handed vertical mouse ergonomic laptop stand",
+    amazonRising: "https://www.amazon.com/gp/movers-and-shakers/electronics/",
     oneLiner: "Specific office pains beat generic gadgets. Best angle: underserved desk setups.",
     demand: "remote work audience",
     upgrade: "lefty-specific + quiet office",
@@ -145,14 +154,15 @@ const filtersEl = document.querySelector("#filters");
 const searchInput = document.querySelector("#searchInput");
 const creditList = document.querySelector("#creditList");
 
-function sourceLinks(query) {
+function sourceLinks(category) {
+  const query = category.query;
   const encoded = encodeURIComponent(query);
   const aliPath = query.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
   return [
     ["AliExpress", `https://www.aliexpress.us/w/wholesale-${aliPath}.html`, true],
     ["1688", `https://s.1688.com/selloffer/offer_search.htm?keywords=${encoded}`, false],
-    ["Amazon", `https://www.amazon.com/s?k=${encoded}`, false],
-    ["Movers", "https://www.amazon.com/gp/movers-and-shakers", false],
+    ["Amazon Search", `https://www.amazon.com/s?k=${encoded}`, false],
+    ["Amazon Rising", category.amazonRising, false],
     ["TikTok", "https://ads.tiktok.com/business/creativecenter/top-products/pc/en", false],
     ["Trends", `https://trends.google.com/trends/explore?geo=US&q=${encoded}`, false]
   ];
@@ -179,7 +189,7 @@ function renderCards() {
 
   grid.innerHTML = visible
     .map((category) => {
-      const links = sourceLinks(category.query)
+      const links = sourceLinks(category)
         .map(([label, href, primary]) => `<a class="source-link${primary ? " primary" : ""}" href="${href}" target="_blank" rel="noreferrer">${label}</a>`)
         .join("");
 

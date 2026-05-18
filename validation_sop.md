@@ -10,7 +10,7 @@
 - AliExpress / FindNiche：看周订单、收藏、价格、供应商稳定性。
 - 1688：看同类产品源头价、MOQ、款式深度、工厂是否支持改色/改材质/组合套装。
 - TikTok Creative Center Top Products：看美国区域、品类热度、CTR、CVR、CPA、互动。
-- Amazon Best Sellers / Movers & Shakers：看美国消费市场是否已有搜索型需求。
+- Amazon Search / category-specific Movers & Shakers：先搜关键词，再看对应品类飙升榜；不要只用 generic Movers 首页，它可能按账号浏览历史显示 Books 等无关内容。
 - Meta Ad Library：看同类产品是否有多个广告主持续投放。
 - Google Trends：看关键词是否处于上升或稳定区间。
 - TikTok Shop：看 live、shoppable video、Shop tab 里的真实社交电商销售场景。
