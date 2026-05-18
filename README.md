@@ -1,11 +1,13 @@
-# 出海爆款验证执行包
+# US Small Product Demand Finder
+
+美国小件商品需求验证器。名字故意直白：先找美国消费者已经愿意买的小件商品，再判断中国供应链能不能做得更好、更便宜、更适合投广告。
 
 本目录把「开放选品 + 美国市场 + 广告点击/加购验证」计划落成可执行资产，已按你的补充标准偏向低合规风险、小轻件、可短视频演示的实物产品。
 
 ## 交付物
 
 - `index.html`：图文入口页，按 Top category 展示图片、关键动作和一键搜索链接
-- `us_demand_pattern_validation.xlsx`：核心“美国需求模式”验证工作簿
+- `us_small_product_demand_finder.xlsx`：核心“美国小件商品需求”验证工作簿
 - `validation_sop.md`：7-10 天执行 SOP
 - `landing_page_and_ads_brief.md`：落地页与广告素材模板
 
@@ -13,7 +15,7 @@
 
 1. 先打开 `index.html`，从图片卡片里选一个方向。
 2. 点击 AliExpress / 1688 / Amazon / TikTok / Google Trends 快速查信号。
-3. 再打开工作簿，从 `Demand Pattern Tracker` 补证据和打分。
+3. 再打开工作簿，从 `US Small Product Tracker` 补证据和打分。
 4. 总分 32+ 的方向进入 `Supplier Outreach`。
 5. 供应商通过后，再用 `Landing Test Brief` 做 landing page、3 条 demo 脚本和 waitlist/preorder 表单。
 

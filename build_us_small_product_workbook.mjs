@@ -2,7 +2,7 @@ import fs from "node:fs/promises";
 import { SpreadsheetFile, Workbook } from "@oai/artifact-tool";
 
 const outputDir = new URL(".", import.meta.url).pathname;
-const outputPath = `${outputDir}/us_demand_pattern_validation.xlsx`;
+const outputPath = `${outputDir}/us_small_product_demand_finder.xlsx`;
 
 const candidates = [
   ["D001", "Minimalist WFH desk organization", "Home office / desk setup", "Modular magnetic desk organizer", 14.99, 3.2, 34.99, "", 29.99, "", "Desk setup / productivity videos; TikTok Top Products supports content-led shopping research.", "Manual check: desk organizer, home office setup", "Too small, plasticky, unstable, cheap-looking.", "Premium matte finish, modular tray sizes, cable slot, Notion/desk productivity positioning.", 5, 5, 5, 5, 5, 5, 5, 5],
@@ -61,7 +61,7 @@ const sources = [
 
 const wb = Workbook.create();
 const dashboard = wb.worksheets.add("Dashboard");
-const tracker = wb.worksheets.add("Demand Pattern Tracker");
+const tracker = wb.worksheets.add("US Small Product Tracker");
 const workflow = wb.worksheets.add("7-Day Workflow");
 const supplier = wb.worksheets.add("Supplier Outreach");
 const landing = wb.worksheets.add("Landing Test Brief");
@@ -74,13 +74,13 @@ const title = (s, r) => { s.getRange(r).format = { fill: "#111827", font: { colo
 const header = (s, r) => { s.getRange(r).format = { fill: "#1F4E79", font: { color: "#FFFFFF", bold: true }, wrapText: true, horizontalAlignment: "center", verticalAlignment: "center", borders: { preset: "outside", style: "thin", color: "#D1D5DB" } }; };
 const body = (s, r) => { s.getRange(r).format = { font: { name: "Calibri", size: 10, color: "#111827" }, wrapText: true, verticalAlignment: "top", borders: { preset: "outside", style: "thin", color: "#E5E7EB" } }; };
 
-write(dashboard, "A1:H1", [["US Demand Pattern Validation Dashboard", "", "", "", "", "", "", ""]]);
+write(dashboard, "A1:H1", [["US Small Product Demand Dashboard", "", "", "", "", "", "", ""]]);
 dashboard.getRange("A1:H1").merge();
 title(dashboard, "A1:H1");
-write(dashboard, "A2:H2", [["Core principle", "Find demand patterns Americans already pay for", "Market", "United States", "Sample threshold", "32+/40", "Date", "2026-05-17"]]);
+write(dashboard, "A2:H2", [["Core principle", "Find small products Americans already want", "Market", "United States", "Sample threshold", "32+/40", "Date", "2026-05-17"]]);
 write(dashboard, "A4:B10", [
   ["Metric", "Value"],
-  ["Patterns captured", ""],
+  ["Products captured", ""],
   ["Sample-stage candidates", ""],
   ["Average score", ""],
   ["Average gross margin", ""],
@@ -88,20 +88,20 @@ write(dashboard, "A4:B10", [
   ["Supplier questions", "9"]
 ]);
 formula(dashboard, "B5:B10", [
-  ['=COUNTA(\'Demand Pattern Tracker\'!B2:B51)'],
-  ['=COUNTIF(\'Demand Pattern Tracker\'!Y2:Y51,"Sample stage")'],
-  ['=AVERAGE(\'Demand Pattern Tracker\'!W2:W51)'],
-  ['=AVERAGE(\'Demand Pattern Tracker\'!J2:J51)'],
+  ['=COUNTA(\'US Small Product Tracker\'!B2:B51)'],
+  ['=COUNTIF(\'US Small Product Tracker\'!Y2:Y51,"Sample stage")'],
+  ['=AVERAGE(\'US Small Product Tracker\'!W2:W51)'],
+  ['=AVERAGE(\'US Small Product Tracker\'!J2:J51)'],
   ['=COUNTA(\'Avoid List\'!A2:A20)'],
   ['=COUNTA(\'Supplier Outreach\'!A4:A12)']
 ]);
-write(dashboard, "D4:H4", [["Top Demand Patterns", "Score", "Gross Margin", "Decision", "Upgrade Angle"]]);
+write(dashboard, "D4:H4", [["Top Small Product Ideas", "Score", "Gross Margin", "Decision", "Upgrade Angle"]]);
 formula(dashboard, "D5:H14", Array.from({ length: 10 }, (_, i) => [
-  `=IFERROR(INDEX('Demand Pattern Tracker'!$B$2:$B$51,MATCH(${i + 1},'Demand Pattern Tracker'!$Z$2:$Z$51,0)),"")`,
-  `=IF(D${i + 5}="","",INDEX('Demand Pattern Tracker'!$W$2:$W$51,MATCH(D${i + 5},'Demand Pattern Tracker'!$B$2:$B$51,0)))`,
-  `=IF(D${i + 5}="","",INDEX('Demand Pattern Tracker'!$J$2:$J$51,MATCH(D${i + 5},'Demand Pattern Tracker'!$B$2:$B$51,0)))`,
-  `=IF(D${i + 5}="","",INDEX('Demand Pattern Tracker'!$Y$2:$Y$51,MATCH(D${i + 5},'Demand Pattern Tracker'!$B$2:$B$51,0)))`,
-  `=IF(D${i + 5}="","",INDEX('Demand Pattern Tracker'!$N$2:$N$51,MATCH(D${i + 5},'Demand Pattern Tracker'!$B$2:$B$51,0)))`
+  `=IFERROR(INDEX('US Small Product Tracker'!$B$2:$B$51,MATCH(${i + 1},'US Small Product Tracker'!$Z$2:$Z$51,0)),"")`,
+  `=IF(D${i + 5}="","",INDEX('US Small Product Tracker'!$W$2:$W$51,MATCH(D${i + 5},'US Small Product Tracker'!$B$2:$B$51,0)))`,
+  `=IF(D${i + 5}="","",INDEX('US Small Product Tracker'!$J$2:$J$51,MATCH(D${i + 5},'US Small Product Tracker'!$B$2:$B$51,0)))`,
+  `=IF(D${i + 5}="","",INDEX('US Small Product Tracker'!$Y$2:$Y$51,MATCH(D${i + 5},'US Small Product Tracker'!$B$2:$B$51,0)))`,
+  `=IF(D${i + 5}="","",INDEX('US Small Product Tracker'!$N$2:$N$51,MATCH(D${i + 5},'US Small Product Tracker'!$B$2:$B$51,0)))`
 ]));
 write(dashboard, "A13:B20", [
   ["Scoring", "Rule"],
@@ -109,8 +109,8 @@ write(dashboard, "A13:B20", [
   ["Total score", "32+ enters sample stage"],
   ["AOV", "$20-$100 preferred"],
   ["Gross margin", "40%+ after landed cost"],
-  ["Validation logic", "AliExpress = signal, 1688 = cost, Amazon/TikTok/Google = US demand"],
-  ["Strategy", "Do not copy SKU; upgrade variant and localize packaging"],
+  ["Validation logic", "AliExpress = supply clue, 1688 = cost, Amazon/TikTok/Google = US demand"],
+  ["Strategy", "Do not copy SKU; improve product and localize packaging"],
   ["First output", "10-product shortlist, then 3-5 landing/content tests"]
 ]);
 header(dashboard, "A4:B4");
@@ -126,7 +126,7 @@ dashboard.getRange("D:D").format.columnWidthPx = 300;
 dashboard.getRange("E:H").format.columnWidthPx = 180;
 dashboard.freezePanes.freezeRows(1);
 
-write(tracker, "A1:Z1", [["ID", "Demand Pattern", "Category", "Product/SKU Example", "AliExpress Price", "1688 Source Price", "Amazon Price", "Estimated Landed Cost", "Target Price", "Gross Margin", "TikTok Signal", "Google Trends", "Main Complaint", "Possible Upgrade", "US Demand /5", "China Supply Advantage /5", "Margin /5", "10s Video Demo /5", "Differentiation /5", "Compliance Risk /5", "Logistics /5", "After-sale Risk /5", "Total /40", "Gate Notes", "Decision", "Priority Rank"]]);
+write(tracker, "A1:Z1", [["ID", "Small Product Demand", "Category", "Product/SKU Example", "AliExpress Price", "1688 Source Price", "Amazon Price", "Estimated Landed Cost", "Target Price", "Gross Margin", "TikTok Signal", "Google Trends", "Main Complaint", "Possible Upgrade", "US Demand /5", "China Supply Advantage /5", "Margin /5", "10s Video Demo /5", "Differentiation /5", "Compliance Risk /5", "Logistics /5", "After-sale Risk /5", "Total /40", "Gate Notes", "Decision", "Priority Rank"]]);
 write(tracker, `A2:V${candidates.length + 1}`, candidates);
 const maxRows = 50;
 formula(tracker, `H2:H${maxRows + 1}`, Array.from({ length: maxRows }, (_, i) => [`=IF(F${i + 2}="","",F${i + 2}*1.25+3)`]));
@@ -155,8 +155,8 @@ workflow.getRange("A1:D1").merge();
 title(workflow, "A1:D1");
 write(workflow, "A3:D3", [["Day", "Goal", "Actions", "Output"]]);
 write(workflow, "A4:D10", [
-  ["Day 1-2", "Capture 50 demand patterns", "AliExpress top selling/Choice, 1688 source, Amazon Movers & Shakers, TikTok Creative Center, Google Trends US.", "50 candidate rows with price, signals, complaint and upgrade angle."],
-  ["Day 3", "Screen to 10", "Remove complex compliance, heavy/fragile, low margin, saturated, low demo value products.", "10 high-score demand patterns."],
+  ["Day 1-2", "Capture 50 small product ideas", "AliExpress top selling/Choice, 1688 source, Amazon Movers & Shakers, TikTok Creative Center, Google Trends US.", "50 candidate rows with price, signals, complaint and upgrade angle."],
+  ["Day 3", "Screen to 10", "Remove complex compliance, heavy/fragile, low margin, saturated, low demo value products.", "10 high-score product ideas."],
   ["Day 4-5", "Contact suppliers", "Ask MOQ, sample price, custom packaging, US/EU customers, certificates, lead time, 30-100 unit test, no-logo, color/material/bundle changes.", "Supplier responses and sample feasibility."],
   ["Day 6", "Landing/content test", "Create one Shopify/Notion landing page, 3 TikTok/Reels demo scripts, 3 scene images, English value prop, waitlist/preorder form.", "Test-ready page and content packet."],
   ["Day 7", "Sample decision", "Require 2+ platform heat, 24h supplier response, sample available, 40%+ margin, differentiation, low compliance risk.", "Order sample / iterate / reject decision."],
@@ -225,7 +225,7 @@ avoid.getRange("B:B").format.columnWidthPx = 560;
 
 try {
   const chart = dashboard.charts.add("ColumnClustered", {
-    title: "Top 10 Demand Pattern Scores",
+    title: "Top 10 Small Product Scores",
     categories: Array.from({ length: 10 }, (_, i) => `=Dashboard!D${i + 5}`),
     series: [{ name: "Score", values: Array.from({ length: 10 }, (_, i) => `=Dashboard!E${i + 5}`) }],
     hasLegend: false,
@@ -243,7 +243,7 @@ for (const sheet of [dashboard, tracker, workflow, supplier, landing, sourceShee
 await fs.mkdir(outputDir, { recursive: true });
 console.log((await wb.inspect({ kind: "table", range: "Dashboard!A1:H20", include: "values,formulas", tableMaxRows: 20, tableMaxCols: 8 })).ndjson);
 console.log((await wb.inspect({ kind: "match", searchTerm: "#REF!|#DIV/0!|#VALUE!|#NAME\\?|#N/A", options: { useRegex: true, maxResults: 300 }, summary: "final formula error scan" })).ndjson);
-for (const sheetName of ["Dashboard", "Demand Pattern Tracker", "7-Day Workflow", "Supplier Outreach", "Landing Test Brief", "Sources & Compliance", "Avoid List"]) {
+for (const sheetName of ["Dashboard", "US Small Product Tracker", "7-Day Workflow", "Supplier Outreach", "Landing Test Brief", "Sources & Compliance", "Avoid List"]) {
   await wb.render({ sheetName, range: "A1:H20", scale: 1 });
 }
 const output = await SpreadsheetFile.exportXlsx(wb);

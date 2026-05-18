@@ -79,7 +79,7 @@ const categories = [
     oneLiner: "Small home mess sells when the reset is satisfying and the colors look premium.",
     demand: "home reset content",
     upgrade: "neutral colors + stronger material",
-    firstAction: "Find exact complaint pattern",
+    firstAction: "Find exact complaint",
     credit: "Wikimedia Commons: Picture of a full closet",
     creditUrl: "https://commons.wikimedia.org/wiki/File:Picture_of_a_full_closet.jpg"
   },
