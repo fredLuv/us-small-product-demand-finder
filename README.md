@@ -14,7 +14,7 @@
 ## 使用方式
 
 1. 先打开 `index.html`，从图片卡片里选一个方向。
-2. 点击 AliExpress / 1688 / Amazon Search / Amazon Rising / TikTok / Google Trends 快速查信号。
+2. 点击 AliExpress / 1688 / Amazon Search / Amazon Rising / TikTok / Google Trends 快速查信号。Google Trends 使用更宽的消费者关键词，不使用过长 SKU 词。
 3. 再打开工作簿，从 `US Small Product Tracker` 补证据和打分。
 4. 总分 32+ 的方向进入 `Supplier Outreach`。
 5. 供应商通过后，再用 `Landing Test Brief` 做 landing page、3 条 demo 脚本和 waitlist/preorder 表单。

@@ -12,7 +12,7 @@
 - TikTok Creative Center Top Products：看美国区域、品类热度、CTR、CVR、CPA、互动。
 - Amazon Search / category-specific Movers & Shakers：先搜关键词，再看对应品类飙升榜；不要只用 generic Movers 首页，它可能按账号浏览历史显示 Books 等无关内容。
 - Meta Ad Library：看同类产品是否有多个广告主持续投放。
-- Google Trends：看关键词是否处于上升或稳定区间。
+- Google Trends：用 2-3 个更宽的消费者搜索词做比较，例如 `desk organizer, home office, desk setup`；不要直接塞完整 SKU 词，否则经常会显示没有足够数据。
 - TikTok Shop：看 live、shoppable video、Shop tab 里的真实社交电商销售场景。
 
 记录要求：

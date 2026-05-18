@@ -53,7 +53,7 @@ const sources = [
   ["1688", "Factory/source price, MOQ, variants", "Validate cost advantage and supply depth.", "https://www.1688.com/"],
   ["Amazon category-specific Movers & Shakers", "Fastest sales-rank gainers inside the matching category", "See short-term US demand changes without landing on personalized Books/series pages.", "https://www.amazon.com/gp/movers-and-shakers/home-garden/"],
   ["TikTok Creative Center Top Products", "Viral products, ad creatives, audience insights", "See content-driven demand.", "https://ads.tiktok.com/business/creativecenter/top-products/pc/en"],
-  ["Google Trends", "US region/time/category search interest", "Check whether demand is rising or stable.", "https://trends.google.com/trends/"],
+  ["Google Trends", "2-3 broad consumer keywords, not long SKU phrases", "Check whether demand is rising or stable without getting no-data pages.", "https://trends.google.com/trends/explore?date=today%2012-m&geo=US&q=desk%20organizer,home%20office,desk%20setup"],
   ["TikTok Shop", "Live, shoppable video, Shop tab", "Observe discovery-commerce sales scenes.", "https://newsroom.tiktok.com/tiktok-shop-is-where-shoppers-come-to-discover"],
   ["CPSC", "Product safety guidance for online sellers", "Screen consumer-product safety and compliance risk.", "https://www.cpsc.gov/Business--Manufacturing/Online-Sellers-Safety-Guide"],
   ["CBP", "Importer responsibility and lawful/safe sourcing", "Screen import compliance, duties and restricted goods.", "https://www.cbp.gov/trade/basic-import-export"]
