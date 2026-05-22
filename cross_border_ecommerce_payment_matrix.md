@@ -22,11 +22,11 @@
 | 巴西 | 86 | 拉美最大级别机会，Pix 改变转化 | Pix, cards/installments, Boleto, Mercado Pago | EBANX, dLocal, Mercado Pago, Adyen, Stripe Brazil | Pix + cards/installments + Boleto | 葡语、本地税、CPF、进口税、物流 | 值得单独做葡语测试 |
 | 智利 | 84 | 西语、购买力较好、市场更稳定 | Cards/debit, Webpay/Transbank, Mercado Pago, bank transfer | Mercado Pago, dLocal, EBANX, PayPal, local PSPs | Cards/Webpay + Mercado Pago + local transfer | 市场小于墨西哥/巴西、跨境税费 | 西语低复杂度测试 |
 | 加拿大 | 82 | 英语市场延伸，信任和客单价好 | Cards, PayPal, Interac, wallets, BNPL | Shopify Payments, Stripe, PayPal, Adyen, Klarna/Affirm | Shopify Payments + PayPal + local currency CAD | Quebec 法语、本地税、物流成本 | 美国验证后复制 |
-| 英国 | 80 | 英语高购买力，DTC 习惯成熟 | Cards, PayPal, Apple/Google Pay, Klarna/Clearpay, Open Banking | Stripe, Shopify Payments, PayPal, Adyen, Checkout.com | Stripe/Shopify + PayPal + Klarna/Clearpay | VAT、退货、UK product safety | 英语第二梯队 |
-| 澳大利亚/新西兰 | 78 | 英语、高客单，但离中国物流远 | Cards, PayPal, Apple/Google Pay, Afterpay, PayTo/PayID | Stripe, Shopify Payments, PayPal, Adyen, Afterpay | Shopify/Stripe + PayPal + Afterpay | 运费、GST、退货距离 | 适合轻小高毛利品 |
-| 西班牙/EU | 78 | 西语 + EU 购买力，但合规重 | Cards/debit, PayPal, Apple/Google Pay, Bizum, SEPA, Klarna | Stripe, Shopify Payments, PayPal, Adyen, Klarna, local PSPs | Stripe/Shopify + PayPal + Bizum/SEPA/Klarna | VAT/IOSS、GPSR、退货、语言客服 | 做之前先整理 EU 合规 |
+| 英国 | 80 | 英语高购买力，DTC 习惯成熟 | Cards, PayPal, Apple/Google Pay, Revolut Pay, Klarna/Clearpay, Open Banking | Stripe, Shopify Payments, PayPal, Adyen, Checkout.com, Revolut Business | Stripe/Shopify + PayPal + Klarna/Clearpay；Revolut 作 FX/merchant add-on | VAT、退货、UK product safety | 英语第二梯队 |
+| 澳大利亚/新西兰 | 78 | 英语、高客单，但离中国物流远 | Cards, PayPal, Apple/Google Pay, Afterpay, PayTo/PayID | Stripe, Shopify Payments, PayPal, Adyen, Afterpay, Revolut Business (AU) | Shopify/Stripe + PayPal + Afterpay；AU 可评估 Revolut | 运费、GST、退货距离 | 适合轻小高毛利品 |
+| 西班牙/EU | 78 | 西语 + EU 购买力，但合规重 | Cards/debit, PayPal, Apple/Google Pay, Revolut Pay, Bizum, SEPA, Klarna | Stripe, Shopify Payments, PayPal, Adyen, Klarna, Revolut Business, local PSPs | Stripe/Shopify + PayPal + Bizum/SEPA/Klarna；Revolut 作 EU 收款/换汇/checkout add-on | VAT/IOSS、GPSR、退货、语言客服 | 做之前先整理 EU 合规 |
 | 哥伦比亚 | 76 | 西语、移动钱包和银行转账重要 | PSE, cards/debit, Nequi, Daviplata, Mercado Pago, cash vouchers | dLocal, EBANX, PayU, Mercado Pago | PSE + cards + wallet/cash options | 物流、COD/现金风险、退款信任 | 作为西语第二批 |
-| 德国/DACH | 74 | EU 大市场，支付习惯和信任门槛独特 | PayPal, invoice/BNPL, SEPA, cards, Klarna | Adyen, Stripe, PayPal, Klarna, Shopify Payments | PayPal + cards + SEPA/Klarna | 德语、本地退货预期、EU 合规 | EU 能力成熟后进入 |
+| 德国/DACH | 74 | EU 大市场，支付习惯和信任门槛独特 | PayPal, invoice/BNPL, SEPA, cards, Klarna, Revolut Pay | Adyen, Stripe, PayPal, Klarna, Shopify Payments, Revolut Business | PayPal + cards + SEPA/Klarna；Revolut 可作 EU 资金账户和支付补充 | 德语、本地退货预期、EU 合规 | EU 能力成熟后进入 |
 | 日本 | 70 | 高客单、品质导向，但本地化要求高 | Cards, Konbini, PayPay, bank transfer, carrier billing | Stripe, Shopify Payments, KOMOJU, PayPal, Adyen | Cards + PayPay + Konbini | 日语客服、SCTA 展示、退货/品质 | 只有强品类 fit 再做 |
 | 阿根廷 | 62 | 有消费需求和电商习惯，但宏观复杂 | Mercado Pago, cards/cuotas, bank transfer, Rapipago/Pago Facil | Mercado Pago, dLocal, EBANX, PayU | Mercado Pago first | 汇率、通胀、进口限制、价格更新频繁 | 不做独立第一站 |
 | 印度 | 58 | 巨大市场，但不是轻松跨境 DTC 起点 | UPI, cards, netbanking, wallets, COD | Razorpay, PayU, Cashfree, PhonePe, Stripe India | Local PSP + UPI + cards | 本地实体/监管、COD、低 AOV、物流 | 需要本地伙伴 |
@@ -49,6 +49,7 @@
 | KOMOJU | 日本本地支付 | Japan | Konbini, PayPay, cards, bank transfer | 日本独立站认真做时 | 需要日语页面和售后配套 |
 | Razorpay / Cashfree / PayU India | 印度本地支付 | India | UPI, cards, netbanking, wallets | 只有印度本地伙伴/主体时 | 监管和主体要求强 |
 | Klarna / Affirm / Afterpay | BNPL | US, UK/EU, AU/NZ 等 | 提高中高客单价转化 | AOV > $50 且退货可控时 | 退货、坏账、费用、广告合规 |
+| Revolut Business / Revolut Pay / Merchant Account | 卖家收款 + 买家结账补充 | UK/EU/Spain/Germany/Australia/Singapore；有受支持主体的卖家 | 多币种账户、FX、merchant account、Revolut Pay、gateway/plugins | UK/EU/AU 主体想把收款、换汇和部分 checkout 放在一个账户时 | Merchant account 支持国家有限；拉美本地支付不是它的强项；不要早期当唯一 PSP |
 | Airwallex | 卖家收款/换汇/全球账户 | 跨境 DTC、平台收款、供应商付款 | 多币种账户、FX、卡、收付款 | 需要收 USD/EUR/GBP 并付供应链 | KYC 和合规资料要准备 |
 | Payoneer | 平台卖家收款 | Amazon, Walmart, eBay, Mercado Libre 等平台卖家 | 平台收款、提款、供应商付款 | 先做 marketplace 或多平台 | 费用、冻结、平台绑定规则 |
 | WorldFirst | 平台收款 + 供应链付款 | Amazon/eBay/Shopee/Lazada/1688 相关 | 多币种收款、付供应商 | 中国供应链和 marketplace 结合时 | 国家/平台覆盖要逐项核对 |
@@ -63,6 +64,7 @@
 | Cards / Debit cards | 全球基线 | 最基础的线上支付方式 | Stripe, Shopify Payments, PayPal/Braintree, Adyen, Checkout.com | 注意 3DS、欺诈、拒付 |
 | Apple Pay / Google Pay / Shop Pay / Link | US, CA, UK, EU, AU/NZ | 减少表单输入，提高移动端转化 | Shopify, Stripe, Adyen, PayPal | 通常作为 cards 上层钱包 |
 | PayPal | US, CA, UK, EU, AU/NZ, JP | 跨境陌生品牌信任工具 | PayPal Checkout, Braintree, Shopify | 要管理争议和账户审查 |
+| Revolut Pay | UK/EU、部分 Revolut 用户密集市场 | 对 Revolut 用户是低摩擦 checkout，也可配合 Revolut Business 结算 | Revolut Business Merchant Account / Revolut Gateway | 适合作为 UK/EU add-on，不是 Mexico/Brazil 等本地支付替代品 |
 | OXXO / Paynet cash voucher | Mexico | 覆盖现金偏好和未充分银行化用户 | dLocal, EBANX, Conekta, Stripe Mexico | 付款有延迟，库存预留要谨慎 |
 | SPEI | Mexico | 即时/银行转账场景 | dLocal, EBANX, Conekta, Stripe Mexico | 对账和退款体验要设计好 |
 | Pix | Brazil | 巴西实时支付主流，转化很关键 | EBANX, dLocal, Mercado Pago, Stripe, Adyen | 需要清晰 QR/过期时间/退款流程 |
@@ -87,7 +89,8 @@
 3. **巴西单独建模**：Pix 是关键；葡语页面、税费、物流、CPF/地址体验要独立考虑。
 4. **阿根廷不要独立硬打**：先用 Mercado Pago/平台/本地伙伴观察真实付款意愿。
 5. **EU/西班牙先查合规再投放**：支付不是最大问题，VAT/IOSS/GPSR/退货/消费者权益才是复杂度。
-6. **收款账户要冗余**：Airwallex/Payoneer/WorldFirst/PingPong/LianLian/Wise 至少主备两套，避免单账户 KYC 或风控卡死现金流。
+6. **Revolut 要放进 UK/EU/AU 工具箱**：更适合作为多币种账户、Revolut Pay 和 merchant add-on；不要把它误判成拉美本地支付方案。
+7. **收款账户要冗余**：Airwallex/Revolut/Payoneer/WorldFirst/PingPong/LianLian/Wise 至少主备两套，避免单账户 KYC 或风控卡死现金流。
 
 ## Sources
 
@@ -102,6 +105,10 @@
 - Conekta payment methods: <https://developers.conekta.com/docs/payment-methods>
 - KOMOJU payment methods: <https://komoju.com/payment-methods/>
 - Razorpay payment methods: <https://razorpay.com/docs/payments/payment-methods/>
+- Revolut Business multi-currency accounts: <https://www.revolut.com/business/multi-currency-accounts/>
+- Revolut Business accept payments: <https://www.revolut.com/business/accept-payments/>
+- Revolut Merchant API: <https://developer.revolut.com/docs/accept-payments/>
+- Revolut merchant eligibility: <https://help.revolut.com/help/merchant-accounts/setting-up-a-merchant-account/who-can-apply-for-a-merchant-account/business/>
 - Airwallex global accounts: <https://www.airwallex.com/us/business-account/global-accounts>
 - Payoneer marketplace payments: <https://www.payoneer.com/solutions/marketplace-payments/>
 - WorldFirst marketplace solutions: <https://www.worldfirst.com/global/solution/marketplaces/>
