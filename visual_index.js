@@ -156,12 +156,163 @@ const filters = [
   { id: "recovery", label: "Recovery" }
 ];
 
+const paymentUrls = {
+  stripe: "https://docs.stripe.com/payments/payment-methods/overview",
+  shopify: "https://help.shopify.com/en/manual/payments/shopify-payments/supported-countries",
+  paypal: "https://www.paypal.com/us/business/accept-payments/checkout",
+  adyen: "https://www.adyen.com/payment-methods",
+  dlocal: "https://www.dlocal.com/payment-methods/",
+  ebanx: "https://business.ebanx.com/en/payment-methods",
+  mercado: "https://www.mercadopago.com/developers/en/docs",
+  conekta: "https://developers.conekta.com/docs/payment-methods",
+  payu: "https://docs.payulatam.com/docs/integration-overview",
+  revolutPayments: "https://www.revolut.com/business/accept-payments/",
+  revolutAccounts: "https://www.revolut.com/business/multi-currency-accounts/",
+  revolutEligibility: "https://help.revolut.com/help/merchant-accounts/setting-up-a-merchant-account/who-can-apply-for-a-merchant-account/business/",
+  airwallex: "https://www.airwallex.com/us/business-account/global-accounts",
+  payoneer: "https://www.payoneer.com/solutions/marketplace-payments/",
+  worldfirst: "https://www.worldfirst.com/global/solution/marketplaces/",
+  pingpong: "https://www.international.pingpongx.com/solutions/marketplace-platforms",
+  lianlian: "https://www.lianlianglobal.com/",
+  wise: "https://wise.com/us/business/",
+  euVat: "https://taxation-customs.ec.europa.eu/vat-e-commerce_en",
+  euGpsr: "https://commission.europa.eu/business-economy-euro/product-safety-and-requirements/product-safety/general-product-safety-regulation_en",
+  mexicoGuide: "https://www.trade.gov/country-commercial-guides/mexico-ecommerce",
+  chileGuide: "https://www.trade.gov/country-commercial-guides/chile-ecommerce",
+  brazilGuide: "https://www.trade.gov/country-commercial-guides/brazil-ecommerce",
+  argentinaGuide: "https://www.trade.gov/country-commercial-guides/argentina-ecommerce"
+};
+
+const paymentDocs = [
+  ["Markdown matrix", "./cross_border_ecommerce_payment_matrix.md", true],
+  ["Excel workbook", "./cross_border_ecommerce_payment_matrix.xlsx", false]
+];
+
+const paymentMarkets = [
+  {
+    country: "Mexico",
+    priority: 88,
+    label: "Spanish first",
+    methods: "Cards, OXXO, SPEI, Mercado Pago, BNPL",
+    stack: "Mercado Pago or dLocal/EBANX + cards + OXXO/SPEI",
+    risk: "Voucher delays, refunds, import/tax clarity.",
+    action: "Build Spanish landing page and test OXXO/SPEI.",
+    links: [["dLocal", paymentUrls.dlocal], ["EBANX", paymentUrls.ebanx], ["Mercado Pago", paymentUrls.mercado], ["Conekta", paymentUrls.conekta], ["Trade.gov", paymentUrls.mexicoGuide]]
+  },
+  {
+    country: "Chile",
+    priority: 84,
+    label: "Low-complexity Spanish",
+    methods: "Cards/debit, Webpay, Mercado Pago, bank transfer",
+    stack: "Cards/Webpay + Mercado Pago + local transfer",
+    risk: "Smaller market, cross-border tax expectations.",
+    action: "Use as Spanish test after Mexico.",
+    links: [["Mercado Pago", paymentUrls.mercado], ["dLocal", paymentUrls.dlocal], ["EBANX", paymentUrls.ebanx], ["Trade.gov", paymentUrls.chileGuide]]
+  },
+  {
+    country: "Brazil",
+    priority: 86,
+    label: "LatAm scale",
+    methods: "Pix, cards/installments, Boleto, Mercado Pago",
+    stack: "Pix + cards/installments + Boleto",
+    risk: "Portuguese, CPF, import tax, fraud, logistics.",
+    action: "Do not fold into Spanish plan; model separately.",
+    links: [["EBANX", paymentUrls.ebanx], ["dLocal", paymentUrls.dlocal], ["Mercado Pago", paymentUrls.mercado], ["Trade.gov", paymentUrls.brazilGuide]]
+  },
+  {
+    country: "Spain / EU",
+    priority: 78,
+    label: "Spanish + compliance",
+    methods: "Cards, PayPal, Apple/Google Pay, Revolut Pay, Bizum, SEPA, Klarna",
+    stack: "Stripe/Shopify + PayPal + Bizum/SEPA/Klarna; Revolut as EU add-on",
+    risk: "VAT/IOSS, GPSR, returns, Spanish support.",
+    action: "Check EU compliance before paid ads.",
+    links: [["Stripe", paymentUrls.stripe], ["Shopify", paymentUrls.shopify], ["Revolut", paymentUrls.revolutPayments], ["EU VAT", paymentUrls.euVat], ["EU GPSR", paymentUrls.euGpsr]]
+  },
+  {
+    country: "United Kingdom",
+    priority: 80,
+    label: "English expansion",
+    methods: "Cards, PayPal, Apple/Google Pay, Revolut Pay, Klarna/Clearpay",
+    stack: "Stripe/Shopify + PayPal + BNPL; Revolut for FX/merchant add-on",
+    risk: "VAT, product safety, returns.",
+    action: "Evaluate Revolut Business if UK entity matters.",
+    links: [["Stripe", paymentUrls.stripe], ["Shopify", paymentUrls.shopify], ["PayPal", paymentUrls.paypal], ["Revolut", paymentUrls.revolutPayments], ["Eligibility", paymentUrls.revolutEligibility]]
+  },
+  {
+    country: "Argentina",
+    priority: 62,
+    label: "Do not hard-launch first",
+    methods: "Mercado Pago, cards/cuotas, bank transfer, Rapipago, Pago Facil",
+    stack: "Mercado Pago first; preferably marketplace/local partner",
+    risk: "FX, inflation, import restrictions, frequent repricing.",
+    action: "Use Mercado Pago or marketplace before standalone DTC.",
+    links: [["Mercado Pago", paymentUrls.mercado], ["dLocal", paymentUrls.dlocal], ["EBANX", paymentUrls.ebanx], ["Trade.gov", paymentUrls.argentinaGuide]]
+  },
+  {
+    country: "Seller accounts",
+    priority: 75,
+    label: "Cash-flow safety",
+    methods: "Marketplace payouts, multi-currency accounts, FX, supplier payments",
+    stack: "Airwallex/Revolut + Payoneer/WorldFirst/PingPong backup",
+    risk: "KYC, account review, FX spread, platform document mismatch.",
+    action: "Run at least one backup collection account before scaling.",
+    links: [["Airwallex", paymentUrls.airwallex], ["Revolut", paymentUrls.revolutAccounts], ["Payoneer", paymentUrls.payoneer], ["WorldFirst", paymentUrls.worldfirst], ["PingPong", paymentUrls.pingpong], ["Wise", paymentUrls.wise]]
+  }
+];
+
+const paymentProviders = [
+  ["Stripe / Shopify", "Default DTC checkout for US, UK, EU, AU and supported countries.", paymentUrls.stripe],
+  ["dLocal / EBANX", "LatAm local rails such as OXXO, SPEI, Pix, PSE, Boleto.", paymentUrls.dlocal],
+  ["Mercado Pago", "Local trust, wallet, installments and Mercado Libre ecosystem.", paymentUrls.mercado],
+  ["Revolut Business", "UK/EU/AU multi-currency account, merchant account, Revolut Pay add-on.", paymentUrls.revolutPayments],
+  ["Airwallex / Payoneer / WorldFirst", "Seller-side collection, FX, marketplace payouts and supplier payments.", paymentUrls.airwallex]
+];
+
+const paymentMethods = [
+  ["Mexico", "OXXO + SPEI"],
+  ["Brazil", "Pix + Boleto"],
+  ["Colombia", "PSE + Nequi"],
+  ["Spain/EU", "SEPA + Bizum + Revolut Pay"],
+  ["Japan", "Konbini + PayPay"],
+  ["India", "UPI"],
+  ["Seller ops", "Multi-currency account + FX"]
+];
+
+const paymentSources = [
+  ["Stripe payment methods", paymentUrls.stripe],
+  ["Shopify Payments supported countries", paymentUrls.shopify],
+  ["PayPal Checkout", paymentUrls.paypal],
+  ["dLocal payment methods", paymentUrls.dlocal],
+  ["EBANX payment methods", paymentUrls.ebanx],
+  ["Mercado Pago Developers", paymentUrls.mercado],
+  ["Revolut accept payments", paymentUrls.revolutPayments],
+  ["Revolut multi-currency accounts", paymentUrls.revolutAccounts],
+  ["Airwallex global accounts", paymentUrls.airwallex],
+  ["Payoneer marketplace payments", paymentUrls.payoneer],
+  ["WorldFirst marketplace solutions", paymentUrls.worldfirst],
+  ["PingPong marketplace solutions", paymentUrls.pingpong],
+  ["EU VAT ecommerce", paymentUrls.euVat],
+  ["EU General Product Safety Regulation", paymentUrls.euGpsr]
+];
+
 let activeFilter = "all";
 
 const grid = document.querySelector("#categoryGrid");
 const filtersEl = document.querySelector("#filters");
 const searchInput = document.querySelector("#searchInput");
 const creditList = document.querySelector("#creditList");
+const panelButtons = document.querySelectorAll("[data-panel]");
+const panelLinks = document.querySelectorAll("[data-panel-link]");
+const panels = {
+  products: document.querySelector("#productsPanel"),
+  payments: document.querySelector("#paymentsPanel")
+};
+const paymentDocLinks = document.querySelector("#paymentDocLinks");
+const paymentGrid = document.querySelector("#paymentGrid");
+const providerGrid = document.querySelector("#providerGrid");
+const methodGrid = document.querySelector("#methodGrid");
+const paymentCreditList = document.querySelector("#paymentCreditList");
 
 function sourceLinks(category) {
   const query = category.query;
@@ -239,6 +390,80 @@ function renderCredits() {
     .join("");
 }
 
+function renderLinkButtons(links) {
+  return links
+    .map(([label, href, primary]) => `<a class="source-link${primary ? " primary" : ""}" href="${href}" target="_blank" rel="noreferrer">${label}</a>`)
+    .join("");
+}
+
+function renderPaymentDocs() {
+  paymentDocLinks.innerHTML = renderLinkButtons(paymentDocs);
+}
+
+function renderPaymentMarkets() {
+  paymentGrid.innerHTML = paymentMarkets
+    .map((market) => `
+      <article class="payment-card">
+        <div class="payment-card-head">
+          <div>
+            <h2>${market.country}</h2>
+            <span>${market.label}</span>
+          </div>
+          <strong>${market.priority}</strong>
+        </div>
+        <div class="payment-lines">
+          <p><small>Buyer pays with</small>${market.methods}</p>
+          <p><small>First stack</small>${market.stack}</p>
+          <p><small>Watch</small>${market.risk}</p>
+          <p><small>Next move</small>${market.action}</p>
+        </div>
+        <div class="source-links">${renderLinkButtons(market.links)}</div>
+      </article>
+    `)
+    .join("");
+}
+
+function renderPaymentReference() {
+  providerGrid.innerHTML = paymentProviders
+    .map(([name, description, href]) => `
+      <a class="provider-row" href="${href}" target="_blank" rel="noreferrer">
+        <strong>${name}</strong>
+        <span>${description}</span>
+      </a>
+    `)
+    .join("");
+
+  methodGrid.innerHTML = paymentMethods
+    .map(([market, method]) => `
+      <div class="method-row">
+        <strong>${market}</strong>
+        <span>${method}</span>
+      </div>
+    `)
+    .join("");
+
+  paymentCreditList.innerHTML = paymentSources
+    .map(([label, href]) => `<a href="${href}" target="_blank" rel="noreferrer">${label}</a>`)
+    .join("");
+}
+
+function setActivePanel(panelName, updateHash = true) {
+  const name = panels[panelName] ? panelName : "products";
+  Object.entries(panels).forEach(([key, panel]) => {
+    const isActive = key === name;
+    panel.hidden = !isActive;
+    panel.classList.toggle("active", isActive);
+  });
+  panelButtons.forEach((button) => {
+    const isActive = button.dataset.panel === name;
+    button.classList.toggle("active", isActive);
+    button.setAttribute("aria-selected", String(isActive));
+  });
+  if (updateHash) {
+    history.replaceState(null, "", `#${name}`);
+  }
+}
+
 filtersEl.addEventListener("click", (event) => {
   const button = event.target.closest("[data-filter]");
   if (!button) return;
@@ -249,6 +474,25 @@ filtersEl.addEventListener("click", (event) => {
 
 searchInput.addEventListener("input", renderCards);
 
+panelButtons.forEach((button) => {
+  button.addEventListener("click", () => setActivePanel(button.dataset.panel));
+});
+
+panelLinks.forEach((link) => {
+  link.addEventListener("click", (event) => {
+    event.preventDefault();
+    setActivePanel(link.dataset.panelLink);
+  });
+});
+
+window.addEventListener("hashchange", () => {
+  setActivePanel(location.hash === "#payments" ? "payments" : "products", false);
+});
+
 renderFilters();
 renderCards();
 renderCredits();
+renderPaymentDocs();
+renderPaymentMarkets();
+renderPaymentReference();
+setActivePanel(location.hash === "#payments" ? "payments" : "products", false);

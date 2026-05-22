@@ -17,17 +17,19 @@
         </span>
       </a>
       <nav class="nav">
-        <a href="./us_small_product_demand_finder.xlsx">Workbook</a>
-        <a href="./validation_sop.md">7-day SOP</a>
-        <a href="./landing_page_and_ads_brief.md">Landing brief</a>
+        <a href="#products" data-panel-link="products">Products</a>
+        <a href="#payments" data-panel-link="payments">Payments</a>
+        <a href="./us_small_product_demand_finder.xlsx" target="_blank" rel="noreferrer">Product workbook</a>
+        <a href="./cross_border_ecommerce_payment_matrix.md" target="_blank" rel="noreferrer">Payment matrix</a>
+        <a href="./validation_sop.md" target="_blank" rel="noreferrer">7-day SOP</a>
       </nav>
     </header>
 
     <main id="top">
       <section class="hero">
         <div class="hero-copy">
-          <h1>Find small products Americans already want.</h1>
-          <p>Pick a category, check the live demand links, then decide if this lightweight product deserves supplier outreach.</p>
+          <h1>Find small products people want, then make checkout work.</h1>
+          <p>Start with US demand signals, then use the payments tab to choose local rails and seller accounts before entering Mexico, Chile, Brazil, Spain/EU, or the UK.</p>
         </div>
         <div class="hero-panel" aria-label="Three-step workflow">
           <div>
@@ -42,54 +44,90 @@
           </div>
           <div>
             <span>3</span>
-            <strong>Upgrade product</strong>
-            <small>Packaging, bundle, material</small>
+            <strong>Take payment</strong>
+            <small>Stripe, Mercado Pago, Revolut</small>
           </div>
         </div>
       </section>
 
-      <section class="controls" aria-label="Category controls">
-        <div class="filter-row" id="filters"></div>
-        <label class="search-box">
-          <span>Search</span>
-          <input id="searchInput" type="search" placeholder="desk, pet, travel, car..." />
-        </label>
+      <div class="section-tabs" role="tablist" aria-label="Research views">
+        <button class="section-tab active" id="productsTab" type="button" role="tab" aria-controls="productsPanel" aria-selected="true" data-panel="products">Product demand</button>
+        <button class="section-tab" id="paymentsTab" type="button" role="tab" aria-controls="paymentsPanel" aria-selected="false" data-panel="payments">Cross-border payments</button>
+      </div>
+
+      <section class="tab-panel active" id="productsPanel" role="tabpanel" aria-labelledby="productsTab">
+        <section class="controls" aria-label="Category controls">
+          <div class="filter-row" id="filters"></div>
+          <label class="search-box">
+            <span>Search</span>
+            <input id="searchInput" type="search" placeholder="desk, pet, travel, car..." />
+          </label>
+        </section>
+
+        <section class="category-grid" id="categoryGrid" aria-live="polite"></section>
+
+        <section class="split">
+          <article class="decision-card">
+            <h2>Sample gate</h2>
+            <div class="gate-grid">
+              <span>32+/40 score</span>
+              <span>40%+ margin</span>
+              <span>$20-100 AOV</span>
+              <span>2+ demand sources</span>
+              <span>Supplier replies in 24h</span>
+              <span>Low compliance risk</span>
+            </div>
+          </article>
+          <article class="decision-card avoid">
+            <h2>Skip first</h2>
+            <div class="avoid-list">
+              <span>supplements</span>
+              <span>food</span>
+              <span>baby products</span>
+              <span>medical devices</span>
+              <span>high-power electronics</span>
+              <span>cosmetics</span>
+              <span>children's jewelry</span>
+              <span>adult products</span>
+              <span>IP knockoffs</span>
+            </div>
+          </article>
+        </section>
+
+        <section class="credits">
+          <h2>Image and source credits</h2>
+          <p>Images are local copies from Wikimedia Commons public-license files. Research links point to platform search pages so the live signal can be checked manually.</p>
+          <div id="creditList"></div>
+        </section>
       </section>
 
-      <section class="category-grid" id="categoryGrid" aria-live="polite"></section>
-
-      <section class="split">
-        <article class="decision-card">
-          <h2>Sample gate</h2>
-          <div class="gate-grid">
-            <span>32+/40 score</span>
-            <span>40%+ margin</span>
-            <span>$20-100 AOV</span>
-            <span>2+ demand sources</span>
-            <span>Supplier replies in 24h</span>
-            <span>Low compliance risk</span>
+      <section class="tab-panel" id="paymentsPanel" role="tabpanel" aria-labelledby="paymentsTab" hidden>
+        <section class="payment-hero" aria-label="Payment matrix summary">
+          <div>
+            <h2>Which country can actually take the money?</h2>
+            <p>Use this tab to match each market with buyer checkout, local payment rails, and seller-side settlement. The goal is to avoid treating Stripe, Mercado Pago, Revolut, and Airwallex as if they solved the same job.</p>
           </div>
-        </article>
-        <article class="decision-card avoid">
-          <h2>Skip first</h2>
-          <div class="avoid-list">
-            <span>supplements</span>
-            <span>food</span>
-            <span>baby products</span>
-            <span>medical devices</span>
-            <span>high-power electronics</span>
-            <span>cosmetics</span>
-            <span>children's jewelry</span>
-            <span>adult products</span>
-            <span>IP knockoffs</span>
-          </div>
-        </article>
-      </section>
+          <div class="payment-doc-links" id="paymentDocLinks"></div>
+        </section>
 
-      <section class="credits">
-        <h2>Image and source credits</h2>
-        <p>Images are local copies from Wikimedia Commons public-license files. Research links point to platform search pages so the live signal can be checked manually.</p>
-        <div id="creditList"></div>
+        <section class="payment-grid" id="paymentGrid" aria-live="polite"></section>
+
+        <section class="payment-split">
+          <article class="decision-card">
+            <h2>Provider roles</h2>
+            <div class="provider-list" id="providerGrid"></div>
+          </article>
+          <article class="decision-card">
+            <h2>Must-have rails</h2>
+            <div class="method-list" id="methodGrid"></div>
+          </article>
+        </section>
+
+        <section class="credits">
+          <h2>Payment source links</h2>
+          <p>Official provider and public-guide links used in the payment matrix. Each link opens in a new browser tab.</p>
+          <div id="paymentCreditList"></div>
+        </section>
       </section>
     </main>
 
