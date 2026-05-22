@@ -12,6 +12,8 @@ This repo turns an overseas product validation plan into a usable research kit: 
 
 - `index.html`：图文入口页，按 Top category 展示图片、关键动作和一键搜索链接
 - `us_small_product_demand_finder.xlsx`：核心“美国小件商品需求”验证工作簿
+- `cross_border_ecommerce_payment_matrix.md`：跨境电商支付国家/公司/产品矩阵
+- `cross_border_ecommerce_payment_matrix.xlsx`：可筛选的跨境支付矩阵工作簿
 - `validation_sop.md`：7-10 天执行 SOP
 - `landing_page_and_ads_brief.md`：落地页与广告素材模板
 
@@ -46,5 +48,6 @@ This repo turns an overseas product validation plan into a usable research kit: 
 
 ## Related
 
+- Cross-border payments matrix: [`cross_border_ecommerce_payment_matrix.md`](./cross_border_ecommerce_payment_matrix.md)
 - Personal site: [fredluv.github.io](https://fredluv.github.io/)
 - Portfolio repo: [fredLuv/fredLuv.github.io](https://github.com/fredLuv/fredLuv.github.io)
